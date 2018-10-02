@@ -13,9 +13,9 @@
  * @package           Chmang
  *
  * @wordpress-plugin
- * Plugin Name:       ChMang
+ * Plugin Name:       Manage Roles Employee and Donor
  * Plugin URI:        https://github.com/yamenshahin/ChMang
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Manage roles for employee and donor. Also give dashboard for both users.
  * Version:           1.0.0
  * Author:            Yamen Shahin
  * Author URI:        https://github.com/yamenshahin/

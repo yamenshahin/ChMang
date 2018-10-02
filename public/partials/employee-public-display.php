@@ -30,6 +30,8 @@ get_header();
                         <li><a class="nav-link active" data-toggle="tab" href="#all">All</a></li>
                         <li><a class="nav-link" data-toggle="tab" href="#new">New</a></li>
                         <li><a class="nav-link" data-toggle="tab" href="#search">Search</a></li>
+                        <li><a class="nav-link" data-toggle="tab" href="#allDonation">All donation</a></li>
+                        <li><a class="nav-link" data-toggle="tab" href="#newDonation">New donation</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,6 +47,14 @@ get_header();
                             <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         </div>
                         <div id="search" class="tab-pane fade">
+                            <h3>Menu 2</h3>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        </div>
+                        <div id="allDonation" class="tab-pane fade">
+                            <h3>Menu 2</h3>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        </div>
+                        <div id="newDonation" class="tab-pane fade">
                             <h3>Menu 2</h3>
                             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
                         </div>

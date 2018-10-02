@@ -51,6 +51,7 @@ class Chmang_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		add_filter( 'page_template', array( $this, 'chmang_page_template' ) );
 
 	}
 
@@ -98,6 +99,21 @@ class Chmang_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/chmang-public.js', array( 'jquery' ), $this->version, false );
 
+	}
+
+	/**
+	* Add page templates for "donor dashboard" and "employee dashboard".
+	*
+	* @since    1.0.0
+	*/
+	public function chmang_page_template( $page_template )
+	{
+		if ( is_page( 'donor-dashboard' ) ) {
+			$page_template = plugin_dir_path( __FILE__ ) . 'partials/donor-public-display.php';
+		} elseif ( is_page( 'employee-dashboard' ) ) {
+			$page_template = plugin_dir_path( __FILE__ ) . 'partials/employee-public-display.php';
+		}
+		return $page_template;
 	}
 
 }

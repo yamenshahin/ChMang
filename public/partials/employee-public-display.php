@@ -30,8 +30,6 @@ get_header();
                         <li><a class="nav-link active" data-toggle="tab" href="#all">All</a></li>
                         <li><a class="nav-link" data-toggle="tab" href="#new">New</a></li>
                         <li><a class="nav-link" data-toggle="tab" href="#search">Search</a></li>
-                        <li><a class="nav-link" data-toggle="tab" href="#allDonation">All donation</a></li>
-                        <li><a class="nav-link" data-toggle="tab" href="#newDonation">New donation</a></li>
                     </ul>
                 </div>
             </div>
@@ -39,12 +37,34 @@ get_header();
                 <div class="col">
                     <div class="tab-content">
                         <div id="all" class="tab-pane active">
-                            <h3>HOME</h3>
+                            <h3>All</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>رقم</th>
+                                        <th>اسم</th>
+                                        <th>نوع</th>
+                                        <th>امر التكلفة</th>
+                                        <th>السعر بالدرهم</th>
+                                        <th>بالفرانك</th>
+                                        <th>نسبة الانجاز</th>
+                                        <th>المشرف</th>
+                                        <th>سعر التعاقد</th>
+                                        <th>الدفعة الاولي</th>
+                                        <th>الثانية</th>
+                                        <th>الثالثة</th>
+                                        <th>إجمالي</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
                         <div id="new" class="tab-pane fade">
-                            <h3>Menu 1</h3>
-                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <h3>ADD/Edit</h3>
+                            <?php include(dirname( __FILE__ ) . '/employee-form-public-display.php'); ?>
                         </div>
                         <div id="search" class="tab-pane fade">
                             <h3>Menu 2</h3>

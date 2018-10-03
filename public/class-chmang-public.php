@@ -83,7 +83,6 @@ class Chmang_Public {
 		}
 		
 		add_filter( 'page_template', array( $this, 'chmang_page_template' ) );
-
 	}
 
 	/**
@@ -180,4 +179,21 @@ class Chmang_Public {
 		return $html  ;
 	}
 
+	
+}
+/**
+* Add new campaign post.
+*
+* @since    1.0.0
+*/
+function chmang_add_campaign_post() 
+{
+	$post = array(
+		'post_title'	=> $_POST['title'],
+		'post_content'	=> $_POST['content'],
+		'campaign_category'	=> $_POST['category'],
+		'post_status'	=> 'publish',
+		'post_type'	=> 'campaign'
+	);
+	wp_insert_post($post);
 }

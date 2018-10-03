@@ -12,7 +12,8 @@
  * @subpackage Chmang/public/partials
  */
 get_header(); 
-$current_user = wp_get_current_user();
+$user_history = new Chmang_Public('chmang', '1.0.0');
+
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
@@ -26,7 +27,20 @@ $current_user = wp_get_current_user();
             </div>
             <div class="row">
                 <div class="col">
+                    <h3>Your donation history</h3>
                     
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">Project name</th>
+                            <th scope="col">Donation amount</th>
+                            <th scope="col">Donation date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php  echo $user_history->chmang_get_donor_history(); ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

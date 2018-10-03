@@ -20,6 +20,7 @@
  * @subpackage Chmang/public
  * @author     Yamen Shahin <yamenshahin@gmail.com>
  */
+require_once( ABSPATH . "wp-includes/pluggable.php" );
 class Chmang_Public {
 
 	/**
@@ -39,6 +40,30 @@ class Chmang_Public {
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
+	/**
+	 * The version of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $user     The current user    
+	 */
+	private $user;
+	/**
+	 * The version of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $user_id     The current user id    
+	 */
+	private $user_id;
+	/**
+	 * The version of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $user_roles     The current user role    
+	 */
+	private $user_roles;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -51,6 +76,12 @@ class Chmang_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		if( is_user_logged_in() ) {
+			$this->user = wp_get_current_user();
+			$this->user_id = get_current_user_id();
+			$this->user_roles = $this->user->roles;
+		}
+		
 		add_filter( 'page_template', array( $this, 'chmang_page_template' ) );
 
 	}
@@ -115,6 +146,38 @@ class Chmang_Public {
 			$page_template = plugin_dir_path( __FILE__ ) . 'partials/employee-public-display.php';
 		}
 		return $page_template;
+	}
+
+	/**
+	* Get donor history.
+	*
+	* @since    1.0.0
+	*/
+	public function chmang_get_donor_history()
+	{
+		global $wpdb;
+		$table_charitable_donors = $wpdb->prefix . 'charitable_donors';
+		$table_charitable_campaign_donations = $wpdb->prefix . 'charitable_campaign_donations';
+		$table_posts =  $wpdb->prefix . 'posts';
+		$donations = $wpdb->get_results("SELECT 
+		`donation_id`, `campaign_name`, `amount`, $table_posts.`post_modified` 
+		FROM $table_charitable_campaign_donations 
+		INNER JOIN $table_charitable_donors
+		ON $table_charitable_donors.`donor_id` =  $table_charitable_campaign_donations.`donor_id`
+		INNER JOIN $table_posts
+		ON $table_posts.`ID` =  $table_charitable_campaign_donations.`donation_id`
+		WHERE `post_status` LIKE 'charitable-completed'", ARRAY_A);
+		
+		$html = '';
+		foreach ($donations as $donation) {
+			$html .= 
+			"<tr>
+				<td>${donation['campaign_name']}</td>
+				<td>${donation['amount']}</td>
+				<td>${donation['post_modified']}</td>
+			</tr>";
+		}
+		return $html  ;
 	}
 
 }

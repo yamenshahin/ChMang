@@ -129,6 +129,12 @@ class Chmang_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/chmang-public.js', array( 'jquery' ), $this->version, false );
 		wp_enqueue_script( 'chmang_bootstrap-js', plugin_dir_url( __FILE__ ) . 'js/bootstrap.min.js', array( 'jquery' ), $this->version, false );
+		/**
+		* Add ajax_url to front-end.
+		*
+		* @since    1.0.0
+		*/
+		wp_localize_script( $this->plugin_name, 'frontend_ajax_url', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 
 	}
 
@@ -186,14 +192,34 @@ class Chmang_Public {
 *
 * @since    1.0.0
 */
+add_action( 'wp_ajax_chmang_add_campaign_post', 'chmang_add_campaign_post' );
+add_action( 'wp_ajax_nopriv_chmang_add_campaign_post', 'chmang_add_campaign_post' );
 function chmang_add_campaign_post() 
 {
+	
 	$post = array(
 		'post_title'	=> $_POST['title'],
 		'post_content'	=> $_POST['content'],
-		'campaign_category'	=> $_POST['category'],
+		'tax_input' => $custom_tax,
 		'post_status'	=> 'publish',
-		'post_type'	=> 'campaign'
+		'post_type'	=> 'campaign',
+		'meta_input' => array(
+			'_campaign_description' => $_POST['content'],
+			'project_number' => $_POST['project_number'],
+			'order' => $_POST['order'],
+			'price_in_dirhams' => $_POST['price_in_dirhams'],
+			'price_in_francs' => $_POST['price_in_francs'],
+			'completion_rate' => $_POST['completion_rate'],
+			'project_supervisor' => $_POST['project_supervisor'],
+			'contract_price' => $_POST['contract_price'],
+			'first_installment' => $_POST['first_installment'],
+			'second_installment' => $_POST['second_installment'],
+			'third_installment' => $_POST['third_installment'],
+			'total_installment' => $_POST['total_installment']
+		)
 	);
-	wp_insert_post($post);
+	$post_id = wp_insert_post($post);
+	wp_set_object_terms( $post_id, $_POST['category'], 'campaign_category' );
+	echo $post_id ;
+	wp_die();
 }

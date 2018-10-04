@@ -29,7 +29,6 @@ get_header();
                     <ul class="nav nav-tabs">
                         <li><a class="nav-link active" data-toggle="tab" href="#all">All</a></li>
                         <li><a class="nav-link" data-toggle="tab" href="#new">New</a></li>
-                        <li><a class="nav-link" data-toggle="tab" href="#search">Search</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,45 +37,11 @@ get_header();
                     <div class="tab-content">
                         <div id="all" class="tab-pane active">
                             <h3>All</h3>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>رقم</th>
-                                        <th>اسم</th>
-                                        <th>نوع</th>
-                                        <th>امر التكلفة</th>
-                                        <th>السعر بالدرهم</th>
-                                        <th>بالفرانك</th>
-                                        <th>نسبة الانجاز</th>
-                                        <th>المشرف</th>
-                                        <th>سعر التعاقد</th>
-                                        <th>الدفعة الاولي</th>
-                                        <th>الثانية</th>
-                                        <th>الثالثة</th>
-                                        <th>إجمالي</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                            </table>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <?php include(dirname( __FILE__ ) . '/employee-search-public-display.php'); ?>
                         </div>
                         <div id="new" class="tab-pane fade">
-                            <h3>ADD/Edit</h3>
+                            <h3>أضف مشروع جديد</h3>
                             <?php include(dirname( __FILE__ ) . '/employee-form-public-display.php'); ?>
-                        </div>
-                        <div id="search" class="tab-pane fade">
-                            <h3>Menu 2</h3>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                        </div>
-                        <div id="allDonation" class="tab-pane fade">
-                            <h3>Menu 2</h3>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                        </div>
-                        <div id="newDonation" class="tab-pane fade">
-                            <h3>Menu 2</h3>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
                         </div>
                     </div>
                 </div>

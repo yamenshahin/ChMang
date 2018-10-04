@@ -223,3 +223,80 @@ function chmang_add_campaign_post()
 	echo $post_id ;
 	wp_die();
 }
+
+
+/**
+ * Result content HTML layout.
+ *
+ * @since      1.0.0
+ */
+function result_content($project_number_search = NULL, $title_search = NULL, $category_search = NULL, $order_search = NULL, $completion_rate_search = NULL, $project_supervisor_search = NULL) {
+	$args = array(
+		'posts_per_page'   => -1,
+		'title' => $title_search,
+		'orderby'          => 'date',
+		'order'            => 'DESC',
+		'post_type'        => 'campaign',
+		'post_status'      => 'publish',	
+	);
+	$posts_array = get_posts( $args );
+
+	$content = '';
+	if($posts_array) {
+		foreach($posts_array as $post) : setup_postdata( $post );
+			$terms = wp_get_post_terms( $post->ID, 'campaign_category' );
+			$single_term = $terms[0]->name;
+			/**
+			 * Filter results.
+			 *
+			 * @since      1.0.0
+			 */
+			
+			if ( ($post->project_number === $project_number_search || !$project_number_search) 
+			&&  ($single_term === $category_search || !$category_search) 
+			&&  ($post->order === $order_search || !$order_search)
+			&&  ($post->completion_rate === $completion_rate_search || !$completion_rate_search)
+			&&  ($post->project_supervisor === $project_supervisor_search || !$project_supervisor_search) ) {
+				$content .= 
+					"<tr>
+						<td><a href='#' data-id='$post->ID'>تعديل</a></td>
+						<td>$post->project_number</td>
+						<td>$post->post_title</td>
+						<td>$single_term</td>
+						<td>$post->order</td>
+						<td>$post->price_in_dirhams</td>
+						<td>$post->price_in_francs</td>
+						<td>$post->completion_rate</td>
+						<td>$post->project_supervisor</td>
+						<td>$post->contract_price</td>
+						<td>$post->first_installment</td>
+						<td>$post->first_installment</td>
+						<td>$post->third_installment</td>
+						<td>$post->total_installment</td>
+					</tr>"
+				;
+			}
+
+		endforeach;
+	}
+	//return $content;
+	return $content ;
+    
+}
+
+/**
+ * Fetch result by ajax.
+ *
+ * @since      1.0.0
+ */
+add_action( 'wp_ajax_fetch_result', 'fetch_result' );
+add_action( 'wp_ajax_nopriv_fetch_result', 'fetch_result' );
+function fetch_result() {
+    echo  result_content($_POST['project_number_search'], $_POST['title_search'], $_POST['category_search'], $_POST['order_search'], $_POST['completion_rate_search'], $_POST['project_supervisor_search']);
+    /**
+	 * This is required to terminate immediately and return a proper response.
+	 *
+	 * @since    1.0.0
+	 */
+    wp_die();
+}

@@ -18,60 +18,60 @@
 <form id="campaign" name="campaign" method="post" action="">
     <div class="form-group">
         <label for="project_number">رقم</label>
-        <input type="text" class="form-control" id="project_number">
+        <input type="text" class="form-control form-control-validate" id="project_number">
     </div>
     <div class="form-group">
         <label for="title">اسم</label>
-        <input type="text" class="form-control" id="title">
+        <input type="text" class="form-control form-control-validate" id="title">
     </div>
     <div class="form-group">
         <label for="category">نوع</label>
-        <input type="text" class="form-control" id="category">
+        <input type="text" class="form-control form-control-validate" id="category">
     </div>
     <div class="form-group">
         <label for="content">الوصف</label>
         <small id="contentHelp" class="form-text text-muted">لا تستخدم HTML ولا علامة comma.</small>
-        <textarea class="form-control" id="content" rows="3" aria-describedby="contentHelp" ></textarea>
+        <textarea class="form-control form-control-validate" id="content" rows="3" aria-describedby="contentHelp" ></textarea>
     </div>
     <div class="form-group">
         <label for="order">امر التكلفة</label>
-        <input type="text" class="form-control" id="order">
+        <input type="text" class="form-control form-control-validate" id="order">
     </div>
     <div class="form-group">
         <label for="price_in_dirhams">السعر بالدرهم</label>
-        <input type="number" class="form-control" id="price_in_dirhams">
+        <input type="number" class="form-control form-control-validate" id="price_in_dirhams">
     </div>
     <div class="form-group">
         <label for="price_in_francs">السعر بالفرانك</label>
-        <input type="number" class="form-control" id="price_in_francs">
+        <input type="number" class="form-control form-control-validate" id="price_in_francs">
     </div>
     <div class="form-group">
         <label for="completion_rate">نسبة الانجاز</label>
-        <input type="text" class="form-control" id="completion_rate">
+        <input type="text" class="form-control form-control-validate" id="completion_rate">
     </div>
     <div class="form-group">
         <label for="project_supervisor">المشرف</label>
-        <input type="text" class="form-control" id="project_supervisor">
+        <input type="text" class="form-control form-control-validate" id="project_supervisor">
     </div>
     <div class="form-group">
         <label for="contract_price">سعر التعاقد</label>
-        <input type="number" class="form-control" id="contract_price">
+        <input type="number" class="form-control form-control-validate" id="contract_price">
     </div>
     <div class="form-group">
         <label for="first_installment">الدفعة الاولي</label>
-        <input type="number" class="form-control" id="first_installment">
+        <input type="number" class="form-control form-control-validate" id="first_installment">
     </div>
     <div class="form-group">
         <label for="second_installment">الدفعة الثانية</label>
-        <input type="number" class="form-control" id="second_installment">
+        <input type="number" class="form-control form-control-validate" id="second_installment">
     </div>
     <div class="form-group">
         <label for="third_installment">الدفعة الثالثة</label>
-        <input type="number" class="form-control" id="third_installment">
+        <input type="number" class="form-control form-control-validate" id="third_installment">
     </div>
     <div class="form-group">
         <label for="total_installment">إجمالي الدفعات</label>
-        <input type="number" class="form-control" id="total_installment">
+        <input type="number" class="form-control form-control-validate" id="total_installment">
     </div>
     <button id="add_post" type="button" class="btn btn-primary">إرسال</button>
     <br>
@@ -87,7 +87,7 @@
 	 */	
     function validateForm() {
         var valid = true;
-        $('.form-control').each(function () {
+        $('.form-control-validate').each(function () {
             if ($(this).val() === '') {
                 valid = false;
                 return false;

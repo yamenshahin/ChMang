@@ -149,6 +149,8 @@ class Chmang_Public {
 			$page_template = plugin_dir_path( __FILE__ ) . 'partials/donor-public-display.php';
 		} elseif ( is_page( 'employee-dashboard' ) ) {
 			$page_template = plugin_dir_path( __FILE__ ) . 'partials/employee-public-display.php';
+		} elseif ( is_page( 'edit-campaign' ) ) {
+			$page_template = plugin_dir_path( __FILE__ ) . 'partials/employee-edit-public-display.php';
 		}
 		return $page_template;
 	}

@@ -65,6 +65,10 @@ register_deactivation_hook( __FILE__, 'deactivate_chmang' );
 require plugin_dir_path( __FILE__ ) . 'includes/class-chmang.php';
 
 /**
+ * Install league/csv
+ */
+require plugin_dir_path( __FILE__ ) . 'includes/csv/autoload.php';
+/**
  * Begins execution of the plugin.
  *
  * Since everything within the plugin is registered via hooks,

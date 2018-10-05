@@ -11,8 +11,13 @@
  * @package    Chmang
  * @subpackage Chmang/public/partials
  */
-
 ?>
+<div class="row">
+    <div class="col">
+        <!-- Upload/import CSV files. --> 
+        <?php include(dirname( __FILE__ ) . '/employee-import-public-display.php'); ?>
+    </div>
+</div>
 <div class="message">
 </div>
 <form id="campaign" name="campaign" method="post" action="">

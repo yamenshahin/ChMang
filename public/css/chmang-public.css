@@ -2,6 +2,14 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
- .table th {
-    text-align: right;
- }
+.table th {
+text-align: right;
+}
+.upload-csv input[type="file"] {
+    visibility: visible;
+    display: inline-block;
+}
+.nav-tabs li {
+    margin-bottom: 0;
+    padding-left: 0; 
+}

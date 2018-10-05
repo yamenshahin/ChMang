@@ -20,23 +20,23 @@ get_header();
         <div class="container">
             <div class="row">
                 <div class="col">
-                <h1>Employee Dashboard</h1>
+                <h1>لوحة بيانات الموظف</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <!-- Nav tabs -->
-                    <ul class="nav nav-tabs">
-                        <li><a class="nav-link active" data-toggle="tab" href="#all">All</a></li>
-                        <li><a class="nav-link" data-toggle="tab" href="#new">New</a></li>
-                    </ul>
+                    <ol class="nav nav-tabs">
+                        <li><a class="nav-link active" data-toggle="tab" href="#all">كل\بحث</a></li>
+                        <li><a class="nav-link" data-toggle="tab" href="#new">جديد</a></li>
+                    </ol>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="tab-content">
                         <div id="all" class="tab-pane active">
-                            <h3>All</h3>
+                            <h3>كل\بحث</h3>
                             <?php include(dirname( __FILE__ ) . '/employee-search-public-display.php'); ?>
                         </div>
                         <div id="new" class="tab-pane fade">

@@ -226,6 +226,47 @@ function chmang_add_campaign_post()
 	wp_die();
 }
 
+/**
+* Edit/Update new campaign post.
+*
+* @since    1.0.0
+*/
+add_action( 'wp_ajax_chmang_edit_campaign_post', 'chmang_edit_campaign_post' );
+add_action( 'wp_ajax_nopriv_chmang_edit_campaign_post', 'chmang_edit_campaign_post' );
+function chmang_edit_campaign_post() 
+{
+	
+	$post = array(
+		'ID' => $_POST['post_id'],
+		'post_title'	=> $_POST['title'],
+		'post_content'	=> $_POST['content'],
+		'tax_input' => $custom_tax,
+		'post_status'	=> 'publish',
+		'post_type'	=> 'campaign',
+		'meta_input' => array(
+			'_campaign_description' => $_POST['content'],
+			'project_number' => $_POST['project_number'],
+			'order' => $_POST['order'],
+			'price_in_dirhams' => $_POST['price_in_dirhams'],
+			'price_in_francs' => $_POST['price_in_francs'],
+			'completion_rate' => $_POST['completion_rate'],
+			'project_supervisor' => $_POST['project_supervisor'],
+			'contract_price' => $_POST['contract_price'],
+			'first_installment' => $_POST['first_installment'],
+			'second_installment' => $_POST['second_installment'],
+			'third_installment' => $_POST['third_installment'],
+			'total_installment' => $_POST['total_installment']
+		)
+	);
+	$my_post = array(
+		'ID'           => 260,
+		'post_title'   => 'This is the post title.',
+		'post_content' => 'This is the updated content.',
+	);
+	wp_update_post($post);
+	wp_set_object_terms( $_POST['post_id'], $_POST['category'], 'campaign_category' );
+	wp_die();
+}
 
 /**
  * Result content HTML layout.
@@ -261,7 +302,7 @@ function result_content($project_number_search = NULL, $title_search = NULL, $ca
 			&&  ($post->project_supervisor === $project_supervisor_search || !$project_supervisor_search) ) {
 				$content .= 
 					"<tr>
-						<td><a href='#' data-id='$post->ID'>تعديل</a></td>
+						<td><a href='${_SERVER['REQUEST_URI']}edit-campaign/?postID=$post->ID'>تعديل</a></td>
 						<td>$post->project_number</td>
 						<td>$post->post_title</td>
 						<td>$single_term</td>

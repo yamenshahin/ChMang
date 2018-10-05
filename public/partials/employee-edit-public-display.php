@@ -43,7 +43,7 @@ if(!is_can_access('employee')) {
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1>Edit Campaign</h1>
+                    <h1>تعديل المشروع</h1>
                     <div class="message">
                     </div>
                     <form id="campaign" name="campaign" method="post" action="">

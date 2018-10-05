@@ -21,7 +21,23 @@ if ( $_GET['postID'] ) {
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-
+<?php 
+if(!is_can_access('employee')) {
+?>
+<section>
+    <div class="block">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                <div class="p-3 mb-2 bg-warning text-white">ليس لديك إذن للوصول إلى هذه الصفحة. إذا حدث هذا عن طريق الخطأ ، يرجى الاتصال بالدعم.</div>
+                </div>      
+            </div> 
+        </div>
+    </div>
+</section>
+<?php
+} else {
+?>
 <section>
     <div class="block">
         <div class="container">
@@ -154,4 +170,6 @@ if ( $_GET['postID'] ) {
 	});
 })( jQuery );
 </script>
-<?php get_footer();
+<?php
+}
+get_footer();

@@ -423,3 +423,14 @@ function upload_csv() {
 	 */
     wp_die();
 }
+/**
+ * Validate access to pages.
+ *
+ * @since      1.0.0
+ */
+function is_can_access($role) {
+	$user = wp_get_current_user();
+	if ( in_array( $role, (array) $user->roles ) || in_array( 'administrator', (array) $user->roles )) {
+		return true;
+	}
+}

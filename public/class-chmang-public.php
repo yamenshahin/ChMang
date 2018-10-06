@@ -217,7 +217,8 @@ function chmang_add_campaign_post()
 			'first_installment' => $_POST['first_installment'],
 			'second_installment' => $_POST['second_installment'],
 			'third_installment' => $_POST['third_installment'],
-			'total_installment' => $_POST['total_installment']
+			'total_installment' => $_POST['total_installment'],
+			'_campaign_allow_custom_donations' => 1
 		)
 	);
 	$post_id = wp_insert_post($post);
@@ -255,7 +256,8 @@ function chmang_edit_campaign_post()
 			'first_installment' => $_POST['first_installment'],
 			'second_installment' => $_POST['second_installment'],
 			'third_installment' => $_POST['third_installment'],
-			'total_installment' => $_POST['total_installment']
+			'total_installment' => $_POST['total_installment'],
+			'_campaign_allow_custom_donations' => 1
 		)
 	);
 	$my_post = array(
@@ -375,7 +377,8 @@ function chmang_add_campaign_post_via_file( $file ) {
 					'first_installment' => $record['10'],
 					'second_installment' => $record['11'],
 					'third_installment' => $record['12'],
-					'total_installment' => $record['13']
+					'total_installment' => $record['13'],
+					'_campaign_allow_custom_donations' => 1
 				)
 			);
 			$post_id = wp_insert_post($post);

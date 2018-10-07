@@ -124,7 +124,9 @@ if(!is_can_access('employee')) {
     function validateForm() {
         var valid = true;
         $('.form-control-validate').each(function () {
-            if ($(this).val() === '') {
+            if($(this).attr('id') === 'second_installment' || $(this).attr('id') === 'third_installment' || $(this).attr('id') === 'content') {
+                return valid;
+            } else if ($(this).val() === '') {
                 valid = false;
                 return false;
             }

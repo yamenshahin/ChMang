@@ -198,6 +198,9 @@ add_action( 'wp_ajax_chmang_add_campaign_post', 'chmang_add_campaign_post' );
 add_action( 'wp_ajax_nopriv_chmang_add_campaign_post', 'chmang_add_campaign_post' );
 function chmang_add_campaign_post() 
 {
+	if(!$_POST['content']) {
+		$_POST['content'] = ' ';
+	}
 	
 	$post = array(
 		'post_title'	=> $_POST['title'],
@@ -236,7 +239,9 @@ add_action( 'wp_ajax_chmang_edit_campaign_post', 'chmang_edit_campaign_post' );
 add_action( 'wp_ajax_nopriv_chmang_edit_campaign_post', 'chmang_edit_campaign_post' );
 function chmang_edit_campaign_post() 
 {
-	
+	if(!$_POST['content']) {
+		$_POST['content'] = ' ';
+	}
 	$post = array(
 		'ID' => $_POST['post_id'],
 		'post_title'	=> $_POST['title'],
@@ -359,6 +364,9 @@ function chmang_add_campaign_post_via_file( $file ) {
 	$i=0;
 	foreach ($records as $offset => $record) {
 		if ($i!=0) {
+			if(!$record['3']) {
+				$record['3'] = ' ';
+			}
 			$post = array(
 				'post_title'	=> $record['1'],
 				'post_content'	=> $record['3'],

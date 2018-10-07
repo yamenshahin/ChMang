@@ -22,6 +22,33 @@
 
 <script>
 (function( $ ) {
+    /**
+     * Refresh search section.
+     *
+     * @since      1.0.0
+     */
+    function refresh_search_page() {
+        jQuery.ajax({
+            type: "POST",
+            url: frontend_ajax_url.ajaxurl,
+            data: { 
+                'action': 'fetch_result',
+                'project_number_search': jQuery('#project_number_search').val(),
+                'title_search': jQuery('#title_search').val(),
+                'category_search': jQuery('#category_search').val(),
+                'order_search': jQuery('#order_search').val(),
+                'completion_rate_search': jQuery('#completion_rate_search').val(),
+                'project_supervisor_search': jQuery('#project_supervisor_search').val()
+            },
+            success: function(response) {
+                jQuery('#results').html(response);
+                console.log('Refresh search section is done;');
+            },
+            error: function(response) {
+                console.log('Refresh search section is NOTE done;');
+            }
+        });
+    }
 	jQuery("#upload_csv").click(function(e) {
         e.preventDefault();
         
@@ -39,6 +66,7 @@
                 data: fd,
                 success: function(response) {
                     jQuery('.message').html(response);
+                    refresh_search_page();
                     console.log(JSON.stringify(response));
                 },
                 error: function(response) {

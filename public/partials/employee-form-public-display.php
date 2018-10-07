@@ -93,12 +93,41 @@
     function validateForm() {
         var valid = true;
         $('.form-control-validate').each(function () {
-            if ($(this).val() === '') {
+            if($(this).attr('id') === 'second_installment' || $(this).attr('id') === 'third_installment' || $(this).attr('id') === 'content') {
+                return valid;
+            } else if ($(this).val() === '') {
                 valid = false;
                 return false;
             }
         });
         return valid;
+    }
+    /**
+     * Refresh search section.
+     *
+     * @since      1.0.0
+     */
+    function refresh_search_page() {
+        jQuery.ajax({
+            type: "POST",
+            url: frontend_ajax_url.ajaxurl,
+            data: { 
+                'action': 'fetch_result',
+                'project_number_search': jQuery('#project_number_search').val(),
+                'title_search': jQuery('#title_search').val(),
+                'category_search': jQuery('#category_search').val(),
+                'order_search': jQuery('#order_search').val(),
+                'completion_rate_search': jQuery('#completion_rate_search').val(),
+                'project_supervisor_search': jQuery('#project_supervisor_search').val()
+            },
+            success: function(response) {
+                jQuery('#results').html(response);
+                console.log('Refresh search section is done;');
+            },
+            error: function(response) {
+                console.log('Refresh search section is NOTE done;');
+            }
+        });
     }
 	jQuery("#add_post").click(function(e) {
         e.preventDefault();
@@ -125,12 +154,13 @@
                 },
                 success: function(response) {
                     jQuery('.message').html(response);
-                    jQuery('.message').html('<div class="p-3 mb-2 bg-success text-white">تمت الاضافة.</div>')
+                    jQuery('.message').html('<div class="p-3 mb-2 bg-success text-white">تمت الاضافة.</div>');
+                    refresh_search_page();
                     console.log(JSON.stringify(response));
                 },
                 error: function(response) {
                     jQuery('.message').html('Something wrong happened!');
-                    jQuery('.message').html('<div class="p-3 mb-2 bg-danger text-white">حدث شيء خطأ!.</div>')
+                    jQuery('.message').html('<div class="p-3 mb-2 bg-danger text-white">حدث شيء خطأ!.</div>');
                 }
             });
         } else {
